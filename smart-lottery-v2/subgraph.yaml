@@ -1,0 +1,42 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: SmartLotteryV2
+    network: goerli
+    source:
+      address: "0x66d136181c15FF9c9e78d0D49235dB7DB3BD95C8"
+      abi: SmartLotteryV2
+      startBlock: 8253160
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ClaimLotteryRewards
+        - EmitTicket
+        - EnterLottery
+        - RequestLotteryWinningTicket
+        - RevealTicket
+        - StartLottery
+        - WinningTicketLotteryPicked
+      abis:
+        - name: SmartLotteryV2
+          file: ./abis/SmartLotteryV2.json
+      eventHandlers:
+        - event: ClaimLotteryRewards(indexed address,uint256)
+          handler: handleClaimLotteryRewards
+        - event: EmitTicket(indexed uint256,indexed address,uint256[4])
+          handler: handleEmitTicket
+        - event: EnterLottery(indexed uint256,indexed address)
+          handler: handleEnterLottery
+        - event: RequestLotteryWinningTicket(indexed uint256,indexed uint256)
+          handler: handleRequestLotteryWinningTicket
+        - event: RevealTicket(indexed uint256,indexed address,uint256[4],uint256)
+          handler: handleRevealTicket
+        - event: StartLottery(indexed uint256,uint256)
+          handler: handleStartLottery
+        - event: WinningTicketLotteryPicked(indexed uint256,uint256[4])
+          handler: handleWinningTicketLotteryPicked
+      file: ./src/smart-lottery-v-2.ts

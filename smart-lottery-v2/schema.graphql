@@ -1,0 +1,65 @@
+type ClaimLotteryRewards @entity(immutable: true) {
+  id: Bytes!
+  winner: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type EmitTicket @entity(immutable: true) {
+  id: Bytes!
+  lotteryNumber: BigInt! # uint256
+  player: Bytes! # address
+  ticket: [BigInt!] # uint256[4]
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type EnterLottery @entity(immutable: true) {
+  id: Bytes!
+  lotteryNumber: BigInt! # uint256
+  player: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RequestLotteryWinningTicket @entity(immutable: true) {
+  id: Bytes!
+  lotteryNumber: BigInt! # uint256
+  requestId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RevealTicket @entity(immutable: true) {
+  id: Bytes!
+  lotteryNumber: BigInt! # uint256
+  player: Bytes! # address
+  ticket: [BigInt!] # uint256[4]
+  nbMatching: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type StartLottery @entity(immutable: true) {
+  id: Bytes!
+  lotteryNumber: BigInt! # uint256
+  startTime: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type WinningTicketLotteryPicked @entity(immutable: true) {
+  id: Bytes!
+  lotteryNumber: BigInt! # uint256
+  ticket: [BigInt!] # uint256[4]
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
